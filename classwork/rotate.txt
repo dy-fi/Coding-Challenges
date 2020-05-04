@@ -1,0 +1,43 @@
+# You're given this problem at a technical interview:
+# Rotate a given linked list counter-clockwise by k nodes, where k is a given integer.
+# Write your answers to these questions and code answer in a repo:
+
+# What clarifying questions would you ask?
+
+Rotation counter-clockwise meaning that it would start with the k-th node from the back?
+In place?
+
+# What reasonable assumptions could you state?
+
+I would return None or some sort of signal if k > n
+I would return the input list if k == 0 and the reversed input list if k == n - 1
+
+# What are 2-3 ways you can simplify the problem?
+
+Return the list, from indexes k to n - 1, and then 0 - k
+Switch everything before n - k and everything after n - k with each other
+
+# Brainstorm 2-3 ways to approach the problem.
+
+Slicing
+Iteration
+
+# Choose one idea and write pseudocode for it.
+
+def rotate(root:<Node>, k:<int>) -> Node:
+    curr = root
+    first = []
+    second = []
+
+    for i in range(k):
+        if not curr.next and i != k:
+            return None
+        
+        second.append(curr.val)
+        curr = curr.next
+    
+    while curr:
+        first.append(curr.val)
+        curr = curr.next
+
+    return first.extend(second)
